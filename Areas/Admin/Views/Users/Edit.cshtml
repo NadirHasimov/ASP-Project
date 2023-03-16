@@ -1,0 +1,139 @@
+﻿@model Marmara.Models.User
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="app-title">
+    <div>
+        <h1>Kullanıcı Düzenle</h1>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item">Kullanıcı</li>
+        <li class="breadcrumb-item active"><a href="#">Düzenle</a></li>
+    </ul>
+</div>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-group">
+        <div class="col-md-10">
+            @if (Model.ImageId != null)
+            {
+                <img class="user-image" src="~/Uploads/@Model.tblImage.Path" alt="team_img_big">
+
+            }
+            else
+            {
+                <img class="user-image" src="~/Public/site/images/unknown.jpg" alt="profile_img">
+            }
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Name">İsim</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Surname">Soyisim</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+            @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Email">Email</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Address">Ünvan</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Phone">Telefon</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="BirthDate">Doğum tarihi</label>
+        <div class="col-md-4">
+            <input class="form-control" id="demoDate" type="text" name="BirthDate" placeholder="Tarih seçin" value="@Model.BirthDate" required>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label class="control-label col-md-4" for="IsMale">Lütfen kullanıcı cinsiyetini seçin:</label>
+        <div class="col-md-10">
+            <div class="checkbox">
+                <input type="radio" id="male" name="IsMale" value="true" @(Model.IsMale == true ? "checked" : "")>
+                <label for="male">Erkek</label><br>
+                <input type="radio" id="female" name="IsMale" value="false" @(Model.IsMale == false ? "checked" : "")>
+                <label for="female">Kadın</label><br>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-4" for="Status">Kullanıcı durumu:</label>
+        <div class="col-md-10">
+            <div class="checkbox">
+                <input type="radio" id="Aktif" name="Status" value="true" @(Model.Status == true ? "checked" : "")>
+                <label for="Aktif">Aktif</label><br>
+                <input type="radio" id="Pasif" name="Status" value="false" @(Model.Status == false ? "checked" : "")>
+                <label for="Pasif">Pasif</label><br>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-4" for="IsCourseStudent">Kurs öğrencisidir:</label>
+        <div class="col-md-10">
+            <div class="checkbox">
+                <input type="radio" id="true" name="IsCourseStudent" value="true" @(Model.Status == true ? "checked" : "")>
+                <label for="true">Evet</label><br>
+                <input type="radio" id="false" name="IsCourseStudent" value="false" @(Model.Status == false ? "checked" : "")>
+                <label for="false">Hayır</label><br>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-4" for="Class">Sınıfı</label>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" id="Class" name="Class" type="number" value="@Model.Class" required min="1" max="13">
+            @Html.ValidationMessageFor(model => model.Class, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Kaydet" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+}

@@ -1,0 +1,471 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5C38297F-B411-468D-8727-9C7FD71204C4}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Marmara</RootNamespace>
+    <AssemblyName>Marmara</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44327</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LessonsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ExamsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LiveStreamController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QuestionsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserExamsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="Controllers\ApplyController.cs" />
+    <Compile Include="Controllers\CertificateController.cs" />
+    <Compile Include="Controllers\CoursesController.cs" />
+    <Compile Include="Controllers\ExamController.cs" />
+    <Compile Include="Controllers\LessonController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\StudyInTurkeyController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ApplyForm.cs" />
+    <Compile Include="Models\ExamModel.cs" />
+    <Compile Include="Models\ChatHub.cs" />
+    <Compile Include="Models\Marmara.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Marmara.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Marmara.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Marmara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Marmara.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Marmara.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PdfModel.cs" />
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>Marmara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblBlog.cs">
+      <DependentUpon>Marmara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblExam.cs">
+      <DependentUpon>Marmara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblImage.cs">
+      <DependentUpon>Marmara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblLesson.cs">
+      <DependentUpon>Marmara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblMessage.cs">
+      <DependentUpon>Marmara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblQuestion.cs">
+      <DependentUpon>Marmara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblUserExam.cs">
+      <DependentUpon>Marmara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>Marmara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Security\UserRoleProvider.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Models\Marmara.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Marmara.edmx</DependentUpon>
+      <LastGenOutput>Marmara.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Marmara.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Marmara.edmx</DependentUpon>
+      <LastGenOutput>Marmara.cs</LastGenOutput>
+    </Content>
+    <Content Include="Public\admin\css\main.css" />
+    <Content Include="Public\admin\css\new.css" />
+    <Content Include="Public\admin\images\banner.jpg" />
+    <Content Include="Public\admin\images\user.jpg" />
+    <Content Include="Public\admin\images\user.png" />
+    <Content Include="Public\admin\js\bootstrap.min.js" />
+    <Content Include="Public\admin\js\jquery-3.3.1.min.js" />
+    <Content Include="Public\admin\js\main.js" />
+    <Content Include="Public\admin\js\plugins\bootstrap-datepicker.min.js" />
+    <Content Include="Public\admin\js\plugins\bootstrap-notify.min.js" />
+    <Content Include="Public\admin\js\plugins\chart.js" />
+    <Content Include="Public\admin\js\plugins\dataTables.bootstrap.min.js" />
+    <Content Include="Public\admin\js\plugins\dropzone.js" />
+    <Content Include="Public\admin\js\plugins\fullcalendar.min.js" />
+    <Content Include="Public\admin\js\plugins\jquery-ui.custom.min.js" />
+    <Content Include="Public\admin\js\plugins\jquery.dataTables.min.js" />
+    <Content Include="Public\admin\js\plugins\jquery.vmap.min.js" />
+    <Content Include="Public\admin\js\plugins\jquery.vmap.sampledata.js" />
+    <Content Include="Public\admin\js\plugins\jquery.vmap.world.js" />
+    <Content Include="Public\admin\js\plugins\moment.min.js" />
+    <Content Include="Public\admin\js\plugins\pace.min.js" />
+    <Content Include="Public\admin\js\plugins\select2.min.js" />
+    <Content Include="Public\admin\js\plugins\sweetalert.min.js" />
+    <Content Include="Public\admin\js\popper.min.js" />
+    <Content Include="Public\imageUpload\css\bootstrap-slider.css" />
+    <Content Include="Public\imageUpload\css\bootstrap.css" />
+    <Content Include="Public\imageUpload\css\bootstrap.min.css" />
+    <Content Include="Public\imageUpload\css\image.css" />
+    <Content Include="Public\imageUpload\js\bootstrap-slider.js" />
+    <Content Include="Public\imageUpload\js\bootstrap.min.js" />
+    <Content Include="Public\imageUpload\js\ImageUpload.js" />
+    <Content Include="Public\imageUpload\js\jquery.min.js" />
+    <Content Include="Public\site\css\all.min.css" />
+    <Content Include="Public\site\css\animate.css" />
+    <Content Include="Public\site\css\bootstrap.min.css" />
+    <Content Include="Public\site\css\certificate.css" />
+    <Content Include="Public\site\css\color\theme.css" />
+    <Content Include="Public\site\css\countdown.css" />
+    <Content Include="Public\site\css\datepicker.css" />
+    <Content Include="Public\site\css\ionicons.min.css" />
+    <Content Include="Public\site\css\magnific-popup.css" />
+    <Content Include="Public\site\css\responsive.css" />
+    <Content Include="Public\site\css\style.css" />
+    <Content Include="Public\site\css\signalR.css" />
+    <Content Include="Public\site\css\themify-icons.css" />
+    <Content Include="Public\site\fonts\fa-brands-400.eot" />
+    <Content Include="Public\site\fonts\fa-brands-400.svg" />
+    <Content Include="Public\site\fonts\fa-brands-400.ttf" />
+    <Content Include="Public\site\fonts\fa-brands-400.woff" />
+    <Content Include="Public\site\fonts\fa-brands-400.woff2" />
+    <Content Include="Public\site\fonts\fa-brands-400d41d.eot" />
+    <Content Include="Public\site\fonts\fa-regular-400.eot" />
+    <Content Include="Public\site\fonts\fa-regular-400.svg" />
+    <Content Include="Public\site\fonts\fa-regular-400.ttf" />
+    <Content Include="Public\site\fonts\fa-regular-400.woff" />
+    <Content Include="Public\site\fonts\fa-regular-400.woff2" />
+    <Content Include="Public\site\fonts\fa-regular-400d41d.eot" />
+    <Content Include="Public\site\fonts\fa-solid-900.eot" />
+    <Content Include="Public\site\fonts\fa-solid-900.svg" />
+    <Content Include="Public\site\fonts\fa-solid-900.ttf" />
+    <Content Include="Public\site\fonts\fa-solid-900.woff" />
+    <Content Include="Public\site\fonts\fa-solid-900.woff2" />
+    <Content Include="Public\site\fonts\fa-solid-900d41d.eot" />
+    <Content Include="Public\site\fonts\ionicons28b5.eot" />
+    <Content Include="Public\site\fonts\ionicons28b5.svg" />
+    <Content Include="Public\site\fonts\ionicons28b5.ttf" />
+    <Content Include="Public\site\fonts\ionicons28b5.woff" />
+    <Content Include="Public\site\fonts\themify9f24.eot" />
+    <Content Include="Public\site\fonts\themify9f24.svg" />
+    <Content Include="Public\site\fonts\themify9f24.ttf" />
+    <Content Include="Public\site\fonts\themify9f24.woff" />
+    <Content Include="Public\site\fonts\themifyd41d.eot" />
+    <Content Include="Public\site\images\AboutVideo.mp4" />
+    <Content Include="Public\site\images\about_bg.jpg" />
+    <Content Include="Public\site\images\about_img2.png" />
+    <Content Include="Public\site\images\about_img3.jpg" />
+    <Content Include="Public\site\images\banner44.jpg" />
+    <Content Include="Public\site\images\banner5.jpg" />
+    <Content Include="Public\site\images\book.png" />
+    <Content Include="Public\site\images\counter_icon1.png" />
+    <Content Include="Public\site\images\counter_icon2.png" />
+    <Content Include="Public\site\images\counter_icon3.png" />
+    <Content Include="Public\site\images\counter_icon4.png" />
+    <Content Include="Public\site\images\email_icon.png" />
+    <Content Include="Public\site\images\favicon.ico" />
+    <Content Include="Public\site\images\globe.png" />
+    <Content Include="Public\site\images\instructors.png" />
+    <Content Include="Public\site\images\kids.png" />
+    <Content Include="Public\site\images\login_img.jpg" />
+    <Content Include="Public\site\images\logo_white.png" />
+    <Content Include="Public\site\images\logo_white11.png" />
+    <Content Include="Public\site\images\logo_white2.png" />
+    <Content Include="Public\site\images\map_icon.png" />
+    <Content Include="Public\site\images\music.png" />
+    <Content Include="Public\site\images\pattern_bg.png" />
+    <Content Include="Public\site\images\pattern_bg2.png" />
+    <Content Include="Public\site\images\pattern_bg3.png" />
+    <Content Include="Public\site\images\pattern_bg4.png" />
+    <Content Include="Public\site\images\pattern_bg5.png" />
+    <Content Include="Public\site\images\pattern_bg6.png" />
+    <Content Include="Public\site\images\phone_icon.png" />
+    <Content Include="Public\site\images\play-icon.png" />
+    <Content Include="Public\site\images\scholarship.png" />
+    <Content Include="Public\site\images\testimonial_shape.png" />
+    <Content Include="Public\site\images\video_bg.jpg" />
+    <Content Include="Public\site\images\WhatsApp Image 2020-05-16 at 4.22.33 PM.jpeg" />
+    <Content Include="Public\site\js\bootstrap-slider.js" />
+    <Content Include="Public\site\js\bootstrap.min.js" />
+    <Content Include="Public\site\js\countDown.min.js" />
+    <Content Include="Public\site\js\imagesloaded.pkgd.min.js" />
+    <Content Include="Public\site\js\ImageUpload.js" />
+    <Content Include="Public\site\js\isotope.min.js" />
+    <Content Include="Public\site\js\SignalR.js" />
+    <Content Include="Public\site\js\jquery-1.12.4.min.js" />
+    <Content Include="Public\site\js\jquery-ui.js" />
+    <Content Include="Public\site\js\jquery.countdown.min.js" />
+    <Content Include="Public\site\js\jquery.counterup.min.js" />
+    <Content Include="Public\site\js\jquery.parallax-scroll.js" />
+    <Content Include="Public\site\js\jquery.signalR-2.2.2.js" />
+    <Content Include="Public\site\js\jquery.signalR-2.2.2.min.js" />
+    <Content Include="Public\site\js\magnific-popup.min.js" />
+    <Content Include="Public\site\js\parallax.js" />
+    <Content Include="Public\site\js\popper.min.js" />
+    <Content Include="Public\site\js\scripts.js" />
+    <Content Include="Public\site\js\waypoints.min.js" />
+    <Content Include="Public\site\owlcarousel\css\AjaxLoader.html" />
+    <Content Include="Public\site\owlcarousel\css\owl.carousel.min.css" />
+    <Content Include="Public\site\owlcarousel\css\owl.theme.css" />
+    <Content Include="Public\site\owlcarousel\css\owl.theme.default.min.css" />
+    <Content Include="Public\site\owlcarousel\css\owl.video.play.html" />
+    <Content Include="Public\site\owlcarousel\js\owl.carousel.min.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Uploads\Payments\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <EntityDeploy Include="Models\Marmara.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Marmara.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Marmara.edmx.diagram">
+      <DependentUpon>Marmara.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Lessons\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Lessons\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Lessons\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Exams\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Exams\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Exams\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Questions\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Questions\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\LiveStream\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\UserExams\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\UserExams\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\UserExams\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\UserExams\View.cshtml" />
+    <None Include="packages.config" />
+    <Content Include="Views\StudyInTurkey\WhyTR.cshtml" />
+    <Content Include="Views\StudyInTurkey\Bachelor.cshtml" />
+    <Content Include="Views\StudyInTurkey\Master.cshtml" />
+    <Content Include="Views\StudyInTurkey\Papers.cshtml" />
+    <Content Include="Views\StudyInTurkey\EduAndCost.cshtml" />
+    <Content Include="Views\StudyInTurkey\Universities.cshtml" />
+    <Content Include="Views\StudyInTurkey\Departments.cshtml" />
+    <Content Include="Views\StudyInTurkey\MasterUnis.cshtml" />
+    <Content Include="Views\Courses\Sat.cshtml" />
+    <Content Include="Views\Courses\yos.cshtml" />
+    <Content Include="Views\Courses\tys.cshtml" />
+    <Content Include="Views\Courses\daad.cshtml" />
+    <Content Include="Views\Courses\tcf.cshtml" />
+    <Content Include="Views\Courses\ielts.cshtml" />
+    <Content Include="Views\Courses\toefl.cshtml" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Views\Home\Registration.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\ForgotPassword.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Exam\Quiz.cshtml" />
+    <Content Include="Views\Shared\_LayoutExam.cshtml" />
+    <Content Include="Views\Exam\Result.cshtml" />
+    <Content Include="Views\Exam\All.cshtml" />
+    <Content Include="Views\Profile\MyExams.cshtml" />
+    <Content Include="Views\Exam\Create.cshtml" />
+    <Content Include="Views\Exam\StartPage.cshtml" />
+    <Content Include="Views\Profile\Sertificates.cshtml" />
+    <Content Include="Views\Certificate\Single.cshtml" />
+    <Content Include="Views\Profile\MyReceipts.cshtml" />
+    <Content Include="Views\Profile\Schedule.cshtml" />
+    <Content Include="Views\Lesson\Live.cshtml" />
+    <Content Include="Views\Lesson\Error.cshtml" />
+    <Content Include="Views\Lesson\PermissionError.cshtml" />
+    <Content Include="Views\Shared\_ProfilePartial.cshtml" />
+    <Content Include="Views\Lesson\Video.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>bin\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>bin\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>bin\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Marmara">
+      <HintPath>bin\Marmara.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core">
+      <HintPath>bin\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb">
+      <HintPath>bin\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin">
+      <HintPath>bin\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>bin\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>bin\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>bin\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>bin\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers">
+      <HintPath>bin\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>bin\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>bin\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor">
+      <HintPath>bin\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages">
+      <HintPath>bin\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment">
+      <HintPath>bin\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor">
+      <HintPath>bin\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease">
+      <HintPath>bin\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>58361</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44327/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

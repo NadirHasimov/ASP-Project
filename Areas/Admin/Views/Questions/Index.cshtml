@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Marmara.Models.tblQuestion>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="app-title">
+    <div>
+        <h1>Sorular - @ViewBag.ExamName</h1>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item"><a href="#">Sınavlar</a></li>
+        <li class="breadcrumb-item active"><a href="#">Sorular</a></li>
+    </ul>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="tile-body">
+               
+                <div class="tile">
+                    <div class="overlay">
+                        <div class="m-loader mr-4">
+                            <svg class="m-circular" viewBox="25 25 50 50">
+                                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"></circle>
+                            </svg>
+                        </div>
+                        <h3 class="l-text">Loading</h3>
+                    </div>
+                    <div>
+                        <div style="position:absolute;right:15px">
+                            <button id="NewQuestionCreateButton" class="btn btn-primary" type="button"><i class="fa fa-plus"></i>Yeni soru yarat</button>
+                        </div>
+                        <div class="row" style="margin-bottom:10px;">
+                            <label class="control-label col-md-2">Sıra</label>
+                            <input id="NewQuestionRow" class="form-control col-md-3" type="number" placeholder="Sorunun sıra numarasını giriniz" value="">
+                        </div>
+                        <div class="row" style="margin-bottom:10px;">
+                            <label class="control-label col-md-2">Dogru cevabi seciniz</label>
+                            <select class="list-box tri-state btn btn-primary col-md-3" id="NewQuestionRightAnswer">
+                                <option value="Empty">Seçin</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="E">E</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <label class="control-label col-md-2">Açıklama</label>
+                            <input id="NewQuestionDescription" class="form-control col-md-3" type="text" placeholder="Soru hakkında açıklama">
+                        </div>
+                        <div style="display:none">
+                            <input id="NewQuestionExamId" value="@ViewBag.ExamId">
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered" id="sampleTable">
+                        <thead>
+                            <tr>
+                                <th>Sıra</th>
+                                <th>Sınav adı</th>
+                                <th>Doğru cevap </th>
+                                <th>Açıklama</th>
+                                <th style="min-width:120px;"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="questionIndexTable">
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Row)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tblExam.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TrueAnswer)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Description)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Sil", "Delete", new { item.Id }, new { @class = "btn btn-primary" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

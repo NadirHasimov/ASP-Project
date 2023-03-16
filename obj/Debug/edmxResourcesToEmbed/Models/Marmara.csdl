@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MarmaraModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="MarmaraEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="MarmaraModel.sysdiagram" />
+    <EntitySet Name="tblBlogs" EntityType="MarmaraModel.tblBlog" />
+    <EntitySet Name="tblExams" EntityType="MarmaraModel.tblExam" />
+    <EntitySet Name="tblImages" EntityType="MarmaraModel.tblImage" />
+    <EntitySet Name="tblLessons" EntityType="MarmaraModel.tblLesson" />
+    <EntitySet Name="tblMessages" EntityType="MarmaraModel.tblMessage" />
+    <EntitySet Name="tblQuestions" EntityType="MarmaraModel.tblQuestion" />
+    <EntitySet Name="tblUserExams" EntityType="MarmaraModel.tblUserExam" />
+    <EntitySet Name="Users" EntityType="MarmaraModel.User" />
+    <AssociationSet Name="FK_tblBlog_tblImage" Association="MarmaraModel.FK_tblBlog_tblImage">
+      <End Role="tblImage" EntitySet="tblImages" />
+      <End Role="tblBlog" EntitySet="tblBlogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblExam_tblLesson" Association="MarmaraModel.FK_tblExam_tblLesson">
+      <End Role="tblLesson" EntitySet="tblLessons" />
+      <End Role="tblExam" EntitySet="tblExams" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblQuestion_tblExam" Association="MarmaraModel.FK_tblQuestion_tblExam">
+      <End Role="tblExam" EntitySet="tblExams" />
+      <End Role="tblQuestion" EntitySet="tblQuestions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUserExam_tblExam" Association="MarmaraModel.FK_tblUserExam_tblExam">
+      <End Role="tblExam" EntitySet="tblExams" />
+      <End Role="tblUserExam" EntitySet="tblUserExams" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUserExam_tblImage" Association="MarmaraModel.FK_tblUserExam_tblImage">
+      <End Role="tblImage" EntitySet="tblImages" />
+      <End Role="tblUserExam" EntitySet="tblUserExams" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Image" Association="MarmaraModel.FK_User_Image">
+      <End Role="tblImage" EntitySet="tblImages" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUserExam_User" Association="MarmaraModel.FK_tblUserExam_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="tblUserExam" EntitySet="tblUserExams" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tblBlog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Text" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="ImageId" Type="Int32" />
+    <NavigationProperty Name="tblImage" Relationship="MarmaraModel.FK_tblBlog_tblImage" FromRole="tblBlog" ToRole="tblImage" />
+  </EntityType>
+  <EntityType Name="tblExam">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LessonId" Type="Int32" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="StartPage" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="EndPage" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ExamTimeLimit" Type="Int32" />
+    <Property Name="Score" Type="Int32" />
+    <Property Name="FourFalseOneTrue" Type="Boolean" />
+    <Property Name="Price" Type="Int32" />
+    <Property Name="FiveAnswerOrNot" Type="Boolean" />
+    <Property Name="PdfName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SertificateScore" Type="Int32" />
+    <NavigationProperty Name="tblLesson" Relationship="MarmaraModel.FK_tblExam_tblLesson" FromRole="tblExam" ToRole="tblLesson" />
+    <NavigationProperty Name="tblQuestions" Relationship="MarmaraModel.FK_tblQuestion_tblExam" FromRole="tblExam" ToRole="tblQuestion" />
+    <NavigationProperty Name="tblUserExams" Relationship="MarmaraModel.FK_tblUserExam_tblExam" FromRole="tblExam" ToRole="tblUserExam" />
+  </EntityType>
+  <EntityType Name="tblImage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Path" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblBlogs" Relationship="MarmaraModel.FK_tblBlog_tblImage" FromRole="tblImage" ToRole="tblBlog" />
+    <NavigationProperty Name="tblUserExams" Relationship="MarmaraModel.FK_tblUserExam_tblImage" FromRole="tblImage" ToRole="tblUserExam" />
+    <NavigationProperty Name="Users" Relationship="MarmaraModel.FK_User_Image" FromRole="tblImage" ToRole="User" />
+  </EntityType>
+  <EntityType Name="tblLesson">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsLiveStreamActive" Type="Boolean" />
+    <NavigationProperty Name="tblExams" Relationship="MarmaraModel.FK_tblExam_tblLesson" FromRole="tblLesson" ToRole="tblExam" />
+  </EntityType>
+  <EntityType Name="tblMessage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MessageTime" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblQuestion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExamId" Type="Int32" />
+    <Property Name="TrueAnswer" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="Row" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblExam" Relationship="MarmaraModel.FK_tblQuestion_tblExam" FromRole="tblQuestion" ToRole="tblExam" />
+  </EntityType>
+  <EntityType Name="tblUserExam">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="ExamId" Type="Int32" />
+    <Property Name="ProofImageId" Type="Int32" />
+    <Property Name="IsExamStarted" Type="Boolean" />
+    <Property Name="AttemptDate" Type="DateTime" Precision="3" />
+    <Property Name="IsExamEnd" Type="Boolean" />
+    <Property Name="PaymentDate" Type="DateTime" Precision="3" />
+    <Property Name="IsSertificateHas" Type="Boolean" />
+    <Property Name="IsPaid" Type="Boolean" />
+    <Property Name="Attempts" Type="Int32" />
+    <Property Name="EndScore" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="TrueAnswerCount" Type="Int32" />
+    <Property Name="FalseAnswerCount" Type="Int32" />
+    <Property Name="EmptyAnswerCount" Type="Int32" />
+    <NavigationProperty Name="tblExam" Relationship="MarmaraModel.FK_tblUserExam_tblExam" FromRole="tblUserExam" ToRole="tblExam" />
+    <NavigationProperty Name="tblImage" Relationship="MarmaraModel.FK_tblUserExam_tblImage" FromRole="tblUserExam" ToRole="tblImage" />
+    <NavigationProperty Name="User" Relationship="MarmaraModel.FK_tblUserExam_User" FromRole="tblUserExam" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="BirthDate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="IsMale" Type="Boolean" />
+    <Property Name="ImageId" Type="Int32" />
+    <Property Name="IsAdmin" Type="Boolean" />
+    <Property Name="Token" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="OnlineLessonPermission" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IsOnlineStudent" Type="Boolean" />
+    <NavigationProperty Name="tblImage" Relationship="MarmaraModel.FK_User_Image" FromRole="User" ToRole="tblImage" />
+    <NavigationProperty Name="tblUserExams" Relationship="MarmaraModel.FK_tblUserExam_User" FromRole="User" ToRole="tblUserExam" />
+  </EntityType>
+  <Association Name="FK_tblBlog_tblImage">
+    <End Type="MarmaraModel.tblImage" Role="tblImage" Multiplicity="0..1" />
+    <End Type="MarmaraModel.tblBlog" Role="tblBlog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblImage">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblBlog">
+        <PropertyRef Name="ImageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblExam_tblLesson">
+    <End Type="MarmaraModel.tblLesson" Role="tblLesson" Multiplicity="0..1" />
+    <End Type="MarmaraModel.tblExam" Role="tblExam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblLesson">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblExam">
+        <PropertyRef Name="LessonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblQuestion_tblExam">
+    <End Type="MarmaraModel.tblExam" Role="tblExam" Multiplicity="0..1" />
+    <End Type="MarmaraModel.tblQuestion" Role="tblQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblExam">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblQuestion">
+        <PropertyRef Name="ExamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUserExam_tblExam">
+    <End Type="MarmaraModel.tblExam" Role="tblExam" Multiplicity="0..1" />
+    <End Type="MarmaraModel.tblUserExam" Role="tblUserExam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblExam">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblUserExam">
+        <PropertyRef Name="ExamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUserExam_tblImage">
+    <End Type="MarmaraModel.tblImage" Role="tblImage" Multiplicity="0..1" />
+    <End Type="MarmaraModel.tblUserExam" Role="tblUserExam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblImage">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblUserExam">
+        <PropertyRef Name="ProofImageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Image">
+    <End Type="MarmaraModel.tblImage" Role="tblImage" Multiplicity="0..1" />
+    <End Type="MarmaraModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblImage">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="ImageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUserExam_User">
+    <End Type="MarmaraModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="MarmaraModel.tblUserExam" Role="tblUserExam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblUserExam">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

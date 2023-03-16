@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Marmara.Models.tblLesson>
+
+@{
+    int count = 1;
+}
+
+
+<div class="app-title">
+    <div>
+        <h1>Dersler</h1>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item active"><a href="#">Dersler</a></li>
+    </ul>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="tile-body">
+                <div class="table-responsive">
+                    <a href="~/Admin/lessons/create" class="btn btn-primary" style="margin-bottom:15px">Yeni ders yarat</a>
+                    <table class="table table-hover table-bordered" id="sampleTable">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Isim </th>
+                                <th style="min-width:120px;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @count
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Düzenle", "Edit", new { id = item.Id } , new { @class = "btn btn-primary" })
+                                    </td>
+                                </tr>
+
+                                count++;
+
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

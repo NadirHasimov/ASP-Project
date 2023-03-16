@@ -1,0 +1,178 @@
+﻿@model Marmara.Models.tblExam
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="app-title">
+    <div>
+        <h1>Sınav Düzenle</h1>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item">Sınavlar</li>
+        <li class="breadcrumb-item active"><a href="#">Düzenle</a></li>
+    </ul>
+</div>
+
+@using (Html.BeginForm("Edit", "Exams", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Status">Durum</label>
+        <div class="col-md-10">
+            <div class="checkbox">
+                <select class="list-box tri-state btn btn-primary" id="Status" name="Status">
+                    @if (Model.Status.Value == true)
+                    {
+                        <option selected="selected" value="true">Görünür</option>
+                        <option value="false">Görünmez</option>
+                    }
+                    else
+                    {
+                        <option value="true">Görünür</option>
+                        <option selected="selected" value="false">Görünmez</option>
+                    }
+                </select>
+                <span class="field-validation-valid text-danger" data-valmsg-for="Status" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Name">İsim</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Name">PDF Yükle</label>
+        <div class="col-md-10">
+            <a href="~/Uploads/@Model.PdfName" target="_blank">@Model.PdfName</a> <br />
+            <input type="file" name="file" />
+            <input type="text" name="PdfName" style="display:none" value="@Model.PdfName" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="LessonId">Dersi</label>
+        <div class="col-md-10">
+            @Html.DropDownList("LessonId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.LessonId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="StartPage">Başlangıç sayfa metni</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.StartPage, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.StartPage, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="EndPage">Son sayfa metni</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.EndPage, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.EndPage, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-4" for="ExamTimeLimit">Sınav süresi (saniye olarak giriniz!)</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ExamTimeLimit, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ExamTimeLimit, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Score">Toplam puan</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Score, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Score, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-4" for="FourFalseOneTrue">4 yanlış bir doğru cevabı götürsün mü?</label>
+        <div class="col-md-8">
+            <div class="checkbox">
+                <select class="list-box tri-state btn btn-primary" id="FourFalseOneTrue" name="FourFalseOneTrue">
+                    @if (Model.FourFalseOneTrue.Value.ToString() == "True")
+                    {
+                        <option selected="selected" value="true">Evet</option>
+                        <option value="false">Hayır (Bütün cavablar düzgün qəbul edilir)</option>
+                    }
+                    else
+                    {
+                        <option value="true">Evet</option>
+                        <option selected="selected" value="false">Hayır (Bütün cavablar düzgün qəbul edilir)</option>
+                    }
+                </select>
+                <span class="field-validation-valid text-danger" data-valmsg-for="FourFalseOneTrue" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Price">Fiyatı</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="SertificateScore">Sertifika başarı oranı</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SertificateScore, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SertificateScore, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-4" for="Class">Sınıfı</label>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" id="Class" name="Class" type="number" value="@Model.Class" required>
+            @Html.ValidationMessageFor(model => model.Class, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-4" for="FiveAnswerOrNot">Sorular 4 cevaplı yada 5 cevaplı olsun ?</label>
+        <div class="col-md-8">
+            <div class="checkbox">
+                <select class="list-box tri-state btn btn-primary" id="FiveAnswerOrNot" name="FiveAnswerOrNot">
+                    @if (Model.FiveAnswerOrNot.Value.ToString() == "True")
+                    {
+                        <option selected="selected" value="true">5</option>
+                        <option value="false">4</option>
+                    }
+                    else
+                    {
+                        <option value="true">5</option>
+                        <option selected="selected" value="false">4</option>
+                    }
+                </select>
+                <span class="field-validation-valid text-danger" data-valmsg-for="FiveAnswerOrNot" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Kaydet" class="btn btn-primary" />
+            <a href="/Admin/exams" class="btn btn-primary">Listeye geri dön</a>
+        </div>
+    </div>
+</div>
+}

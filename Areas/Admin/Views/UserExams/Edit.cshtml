@@ -1,0 +1,152 @@
+﻿@model Marmara.Models.tblUserExam
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+<div class="app-title">
+    <div>
+        <h1>Sınav Düzenle</h1>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item">Öğrenci sınavları</li>
+        <li class="breadcrumb-item active"><a href="#">Düzenle</a></li>
+    </ul>
+</div>
+
+@using (Html.BeginForm("Edit", "userexams", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+
+
+    <div class="row">
+         <label class="control-label col-md-4" for="Status">Ödeme Durumu</label>
+        <div class="col-md-6">
+            <div class="checkbox">
+                <select class="list-box tri-state btn btn-primary" id="IsPaid" name="IsPaid">
+                    <option value="">Seçili değil</option>
+                    <option selected="selected" value="true">Ödendi</option>
+                    <option value="false">Ödenmedi</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="control-label col-md-4">Öğrenci</label>
+        <div class="col-md-6">
+            @Html.DisplayFor(model => model.User.Name)
+            @Html.DisplayFor(model => model.User.Surname)
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="control-label col-md-4">Sınav</label>
+        <div class="col-md-6">
+            @Html.DisplayFor(model => model.tblExam.Name)
+        </div>
+    </div>
+
+    @if (Model.ProofImageId != null)
+    {
+        <div class="row">
+            <label class="control-label col-md-4">Ödeme belgesi</label>
+            <div class="col-md-6">
+                <a href="~/Uploads/Payments/@Model.tblImage.Path" target="_blank">
+                    <img src="~/Uploads/Payments/@Model.tblImage.Path" width="100" />
+                </a>
+            </div>
+        </div>
+    }
+
+    <div class="row">
+        <label class="control-label col-md-4">Sınav başladımı</label>
+        <div class="col-md-6">
+            @if (Model.IsExamStarted == true)
+            {
+                <span>Evet</span>
+            }
+            else
+            {
+                <span>Hayır</span>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <label class="control-label col-md-4">Sınav bitti mi</label>
+        <div class="col-md-6">
+            @if (Model.IsExamEnd == true)
+            {
+                <span>Evet</span>
+            }
+            else
+            {
+                <span>Hayır</span>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <label class="control-label col-md-4">Sınava giriş tarihi</label>
+        <div class="col-md-6">
+            @Html.DisplayFor(model => model.AttemptDate)
+        </div>
+    </div>
+    <div class="row">
+        <label class="control-label col-md-4">Ödeme tarihi</label>
+        <div class="col-md-6">
+            @Html.DisplayFor(model => model.PaymentDate)
+        </div>
+    </div>
+    <div class="row">
+        <label class="control-label col-md-4">Sertifikası m</label>
+        <div class="col-md-6">
+            @if (Model.IsSertificateHas == true)
+            {
+                <span>Evet</span>
+            }
+            else
+            {
+                <span>Hayır</span>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <label class="control-label col-md-4">Sıvav puanı</label>
+        <div class="col-md-6">
+            @Html.DisplayFor(model => model.EndScore)
+        </div>
+    </div>
+    <div class="row">
+        <label class="control-label col-md-4">Doğru cevap sayı</label>
+        <div class="col-md-6">
+            @Html.DisplayFor(model => model.TrueAnswerCount)
+        </div>
+    </div>
+    <div class="row">
+        <label class="control-label col-md-4">Yanlış cevap sayı</label>
+        <div class="col-md-6">
+            @Html.DisplayFor(model => model.FalseAnswerCount)
+        </div>
+    </div>
+    <div class="row">
+        <label class="control-label col-md-4">Boş cevap sayı</label>
+        <div class="col-md-6">
+            @Html.DisplayFor(model => model.EmptyAnswerCount)
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-offset-2 col-md-6">
+            <input type="submit" value="Kaydet" class="btn btn-primary" />
+            <a href="/Admin/userexams" class="btn btn-primary">Listeye geri dön</a>
+        </div>
+    </div>
+</div>
+}

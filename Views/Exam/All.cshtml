@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Marmara.Models.tblExam>
+@{ 
+    Marmara.Models.User User = Session["User"] as Marmara.Models.User;
+}
+
+<!-- START SECTION BREADCRUMB -->
+<section class="page-title-light breadcrumb_section parallax_bg overlay_bg_50" data-parallax-bg-image="/Public/site/images/about_bg.jpg">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-sm-6">
+                <div class="page-title">
+                    <h1>Imtahanlar</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END SECTION BANNER -->
+
+
+<section id="all_exams_section">
+    <div class="container">
+       
+        <div class="row">
+            <div class="col-md-6">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/75ecBGYLCi8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="col-md-6">
+                <div class="heading_s1">
+                    <h2>Ödənişi necə etməli?</h2>
+                </div>
+                <h4 class="text_danger">Kapital bank : 5103-0714-3686-0502 (SEXAVET MEMMEDOV)</h4>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                if (item.Class == null)
+                {
+                    <!-- item -->
+                    <div class="col-md-4 col-sm-4 text-center">
+                        <div class="panel panel-danger panel-pricing">
+                            <div class="panel-body text-center">
+                                <p><strong>@(item.Name)</strong></p>
+                            </div>
+                            <ul class="list-group text-center">
+                                <li class="list-group-item"><i class="fa fa-check"></i> İmtahan vaxtı: @(item.ExamTimeLimit / 60) dəqiqədir</li>
+                                <li class="list-group-item"><i class="fa fa-check"></i>  @(item.Price) AZN</li>
+                            </ul>
+                            <div class="panel-footer">
+                                <a class="btn btn-lg btn-block btn-default rounded-0" href="~/exam/create/@item.Id">Ödəniş Et</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /item -->
+                }
+                else
+                {
+                    if (Convert.ToInt32(item.Class) == User.Class)
+                    {
+                        <!-- item -->
+                        <div class="col-md-4 col-sm-4 text-center">
+                            <div class="panel panel-danger panel-pricing">
+                                <div class="panel-body text-center">
+                                    <p><strong>@(item.Name)</strong></p>
+                                </div>
+                                <ul class="list-group text-center">
+                                    <li class="list-group-item"><i class="fa fa-check"></i> İmtahan vaxtı: @(item.ExamTimeLimit / 60) dəqiqədir</li>
+                                    <li class="list-group-item"><i class="fa fa-check"></i>  @(item.Price) AZN</li>
+                                </ul>
+                                <div class="panel-footer">
+                                    <a class="btn btn-lg btn-block btn-default rounded-0" href="~/exam/create/@item.Id">Ödəniş Et</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /item -->
+                    }
+                }
+
+            }
+
+        </div>
+    </div>
+</section>

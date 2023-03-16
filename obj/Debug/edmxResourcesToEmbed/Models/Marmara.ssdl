@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MarmaraModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tblBlog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="Text" Type="nvarchar" MaxLength="500" />
+    <Property Name="Date" Type="date" />
+    <Property Name="ImageId" Type="int" />
+  </EntityType>
+  <EntityType Name="tblExam">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="LessonId" Type="int" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="StartPage" Type="nvarchar" MaxLength="150" />
+    <Property Name="EndPage" Type="nvarchar" MaxLength="150" />
+    <Property Name="ExamTimeLimit" Type="int" />
+    <Property Name="Score" Type="int" />
+    <Property Name="FourFalseOneTrue" Type="bit" />
+    <Property Name="Price" Type="int" />
+    <Property Name="FiveAnswerOrNot" Type="bit" />
+    <Property Name="PdfName" Type="nvarchar" MaxLength="50" />
+    <Property Name="SertificateScore" Type="int" />
+  </EntityType>
+  <EntityType Name="tblImage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Path" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="tblLesson">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsLiveStreamActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="tblMessage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameSurname" Type="nvarchar" MaxLength="50" />
+    <Property Name="MessageTime" Type="varchar" MaxLength="10" />
+    <Property Name="Message" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="tblQuestion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExamId" Type="int" />
+    <Property Name="TrueAnswer" Type="varchar" MaxLength="1" />
+    <Property Name="Row" Type="int" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="tblUserExam">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="ExamId" Type="int" />
+    <Property Name="ProofImageId" Type="int" />
+    <Property Name="IsExamStarted" Type="bit" />
+    <Property Name="AttemptDate" Type="datetime" />
+    <Property Name="IsExamEnd" Type="bit" />
+    <Property Name="PaymentDate" Type="datetime" />
+    <Property Name="IsSertificateHas" Type="bit" />
+    <Property Name="IsPaid" Type="bit" />
+    <Property Name="Attempts" Type="int" />
+    <Property Name="EndScore" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="TrueAnswerCount" Type="int" />
+    <Property Name="FalseAnswerCount" Type="int" />
+    <Property Name="EmptyAnswerCount" Type="int" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="100" />
+    <Property Name="Phone" Type="varchar" MaxLength="25" />
+    <Property Name="BirthDate" Type="varchar" MaxLength="10" />
+    <Property Name="IsMale" Type="bit" />
+    <Property Name="ImageId" Type="int" />
+    <Property Name="IsAdmin" Type="bit" />
+    <Property Name="Token" Type="varchar" MaxLength="100" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="OnlineLessonPermission" Type="varchar" MaxLength="10" />
+    <Property Name="Role" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="250" />
+    <Property Name="IsOnlineStudent" Type="bit" />
+  </EntityType>
+  <Association Name="FK_tblBlog_tblImage">
+    <End Role="tblImage" Type="Self.tblImage" Multiplicity="0..1" />
+    <End Role="tblBlog" Type="Self.tblBlog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblImage">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblBlog">
+        <PropertyRef Name="ImageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblExam_tblLesson">
+    <End Role="tblLesson" Type="Self.tblLesson" Multiplicity="0..1" />
+    <End Role="tblExam" Type="Self.tblExam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblLesson">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblExam">
+        <PropertyRef Name="LessonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblQuestion_tblExam">
+    <End Role="tblExam" Type="Self.tblExam" Multiplicity="0..1" />
+    <End Role="tblQuestion" Type="Self.tblQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblExam">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblQuestion">
+        <PropertyRef Name="ExamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUserExam_tblExam">
+    <End Role="tblExam" Type="Self.tblExam" Multiplicity="0..1" />
+    <End Role="tblUserExam" Type="Self.tblUserExam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblExam">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblUserExam">
+        <PropertyRef Name="ExamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUserExam_tblImage">
+    <End Role="tblImage" Type="Self.tblImage" Multiplicity="0..1" />
+    <End Role="tblUserExam" Type="Self.tblUserExam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblImage">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblUserExam">
+        <PropertyRef Name="ProofImageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUserExam_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="tblUserExam" Type="Self.tblUserExam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblUserExam">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Image">
+    <End Role="tblImage" Type="Self.tblImage" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblImage">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="ImageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MarmaraModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblBlog" EntityType="Self.tblBlog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblExam" EntityType="Self.tblExam" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblImage" EntityType="Self.tblImage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblLesson" EntityType="Self.tblLesson" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblMessage" EntityType="Self.tblMessage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblQuestion" EntityType="Self.tblQuestion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUserExam" EntityType="Self.tblUserExam" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tblBlog_tblImage" Association="Self.FK_tblBlog_tblImage">
+      <End Role="tblImage" EntitySet="tblImage" />
+      <End Role="tblBlog" EntitySet="tblBlog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblExam_tblLesson" Association="Self.FK_tblExam_tblLesson">
+      <End Role="tblLesson" EntitySet="tblLesson" />
+      <End Role="tblExam" EntitySet="tblExam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblQuestion_tblExam" Association="Self.FK_tblQuestion_tblExam">
+      <End Role="tblExam" EntitySet="tblExam" />
+      <End Role="tblQuestion" EntitySet="tblQuestion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUserExam_tblExam" Association="Self.FK_tblUserExam_tblExam">
+      <End Role="tblExam" EntitySet="tblExam" />
+      <End Role="tblUserExam" EntitySet="tblUserExam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUserExam_tblImage" Association="Self.FK_tblUserExam_tblImage">
+      <End Role="tblImage" EntitySet="tblImage" />
+      <End Role="tblUserExam" EntitySet="tblUserExam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUserExam_User" Association="Self.FK_tblUserExam_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="tblUserExam" EntitySet="tblUserExam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Image" Association="Self.FK_User_Image">
+      <End Role="tblImage" EntitySet="tblImage" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

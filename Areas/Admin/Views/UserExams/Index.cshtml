@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Marmara.Models.tblUserExam>
+
+@{
+    ViewBag.Title = "Index";
+    int count = 1;
+}
+
+
+<div class="app-title">
+    <div>
+        <h1>Sınavlar</h1>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item active"><a href="#">Öğrenci imtahanları</a></li>
+    </ul>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="tile-body">
+                <div class="table-responsive">
+                    <a href="~/Admin/exams/create" class="btn btn-primary" style="margin-bottom:15px">Yeni sınav yarat</a>
+                    <table class="table table-hover table-bordered" id="sampleTable">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Öğrenci</th>
+                                <th>İmtahan</th>
+                                <th>Girişi </th>
+                                <th>Ödəmə t.</th>
+                                <th>Ödəmə st.</th>
+                                <th style="min-width:120px;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+
+                            <tr>
+                                <td>
+                                    @count
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.User.Name)  @Html.DisplayFor(modelItem => item.User.Surname)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tblExam.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AttemptDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PaymentDate)
+                                </td>
+                                <td>
+                                    @if (item.IsPaid == true)
+                                    {
+                                        <button class="btn btn-success" type="button">Ödənilib</button>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn btn-warning" type="button">Gözləmədə</button>
+                                    }
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
+                                </td>
+                            </tr>
+
+                                count++;
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

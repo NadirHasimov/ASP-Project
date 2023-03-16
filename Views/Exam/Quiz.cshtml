@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Marmara.Models.tblQuestion>
+@{
+    Layout = "~/Views/Shared/_LayoutExam.cshtml";
+}
+
+<section id="UserExam">
+    <div class="col-md-9">
+        <div class="examCountdown"></div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <object data="~/uploads/@(ViewBag.Exam.PdfName)#toolbar=0" type="application/pdf" width="100%" height="100%">
+                    <param name="title" value="test">
+                </object>
+            </div>
+            <div class="col-md-3">
+                <input id="FiveOrNot" value="@ViewBag.Exam.FiveAnswerOrNot" style="display:none!important" />
+                <input id="RemainingTime" value="@ViewBag.RemainingTime" style="display:none!important" />
+                <input id="userExamId" value="@ViewBag.userExamId" style="display:none!important" />
+                <table>
+                    @foreach (var item in Model.OrderBy(o => o.Row))
+                    {
+                        <tr class="Question@(item.Row)">
+                            <td>
+                                <label>@(item.Row).</label>
+                            </td>
+                            <td>
+                                <input type="radio" class="Answer" name="@(item.Row)" value="A">
+                                <label>A)</label>
+                            </td>
+                            <td>
+                                <input type="radio" class="Answer" name="@(item.Row)" value="B">
+                                <label>B)</label>
+                            </td>
+                            <td>
+                                <input type="radio" class="Answer" name="@(item.Row)" value="C">
+                                <label>C)</label>
+                            </td>
+                            <td>
+                                <input type="radio" class="Answer" name="@(item.Row)" value="D">
+                                <label>D)</label>
+                            </td>
+                            @if (item.tblExam.FiveAnswerOrNot == true)
+                            {
+                                <td>
+                                    <input type="radio" class="Answer" name="@(item.Row)" value="E">
+                                    <label>E)</label>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </table>
+                <button id="finishExam" type="button" class="btn btn-default">Bitir</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section scripts{
+    <script>
+
+
+
+        (function ($) {
+            'use strict';
+
+            $(document).ready(function () {
+                function finishExam() {
+                    document.getElementById("finishExam").click();
+                }
+
+                var examEndTime = document.querySelector('#RemainingTime').value * (-1);
+
+                var cd = new Countdown({
+                    cont: document.querySelector('.examCountdown'),
+                    date: Date.now() + examEndTime * 1000,
+                    outputTranslation: {
+                        hour: 'Saat',
+                        minute: 'Dəqiqə',
+                        second: 'Saniyə',
+                    },
+                    endCallback: finishExam,
+                    outputFormat: 'hour|minute|second',
+                });
+
+                cd.start();
+            });
+
+            function myFunction() {
+                var buttons = document.getElementsByName('radio_value');
+                for (var i = 0; i < buttons.length; i++) {
+                    if (buttons[i].checked == true) document.getElementById('TrueAnswerId').value = i;
+                }
+            }
+
+
+        })(jQuery);
+    </script>
+}

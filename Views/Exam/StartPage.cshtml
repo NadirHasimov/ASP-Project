@@ -1,0 +1,20 @@
+﻿@model Marmara.Models.tblExam
+@{
+    Layout = "~/Views/Shared/_LayoutExam.cshtml";
+}
+
+<section>
+    <div class="container startTestContainer">
+        <div class="row startTestRow">
+            <div class="col-md-12">
+                <h2 class="text-center">@Model.Name</h2>
+                <a class="startTest" href="~/exam/quiz/@ViewBag.userExamId"><strong>Başla</strong><span>›</span></a>
+
+            </div>
+            <div class="col-md-12">
+                <p>@Model.StartPage</p>
+            </div>
+        </div>
+    </div>
+</section>
+

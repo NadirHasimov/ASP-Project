@@ -1,0 +1,31 @@
+﻿
+<div class="col-lg-3 col-md-6">
+        <div class="team_single box_shadow1">
+            <div class="team_img profile-img">
+                <div class="imgFrame rounded-circle">
+                    @if (Model.ImageId != null)
+                    {
+                        <img class="user-image" src="~/Uploads/@Model.tblImage.Path" alt="team_img_big">
+
+                    }
+                    else
+                    {
+                        <img class="user-image" src="~/Public/site/images/unknown.jpg" alt="profile_img">
+                    }
+                </div>
+            </div>
+            <div class="profile_links">
+                <ul>
+                    <li><i class="fa fa-user"></i><a href="~/profile/index/@Model.Id">Hesabım</a></li>
+                    <li><i class="fa fa-file"></i><a href="~/profile/myexams/@Model.Id">İmtahanlarım</a></li>
+                    <li><i class="fa fa-address-card"></i><a href="~/profile/sertificates/@Model.Id">Sertifikarlarım</a></li>
+                    <li><i class="fa fa-shopping-cart"></i><a href="~/profile/myreceipts/@Model.Id">Ödənişlərim</a></li>
+                    @if (Model.IsCourseStudent == true)
+                    {
+                        <li><i class="fa fa-table"></i><a href="~/profile/schedule/@Model.Id">Cədvəl</a></li>
+                    }
+                    <li><i class="fa fa-sign-out" aria-hidden="true"></i><a href="~/home/logout">Çıxış</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>

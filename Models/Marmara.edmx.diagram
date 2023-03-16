@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="40175fb873bb41568ab130e3e016793d" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="MarmaraModel.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MarmaraModel.tblBlog" Width="1.5" PointX="3" PointY="14.5" />
+        <EntityTypeShape EntityType="MarmaraModel.tblExam" Width="1.5" PointX="3" PointY="1.25" />
+        <EntityTypeShape EntityType="MarmaraModel.tblImage" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="MarmaraModel.tblLesson" Width="1.5" PointX="0.75" PointY="2.375" />
+        <EntityTypeShape EntityType="MarmaraModel.tblMessage" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="MarmaraModel.tblQuestion" Width="1.5" PointX="5.25" PointY="2.25" />
+        <EntityTypeShape EntityType="MarmaraModel.tblUserExam" Width="1.5" PointX="5.25" PointY="8" />
+        <EntityTypeShape EntityType="MarmaraModel.User" Width="1.5" PointX="3" PointY="9.25" />
+        <AssociationConnector Association="MarmaraModel.FK_tblBlog_tblImage" />
+        <AssociationConnector Association="MarmaraModel.FK_tblExam_tblLesson" />
+        <AssociationConnector Association="MarmaraModel.FK_tblQuestion_tblExam" />
+        <AssociationConnector Association="MarmaraModel.FK_tblUserExam_tblExam" />
+        <AssociationConnector Association="MarmaraModel.FK_tblUserExam_tblImage" />
+        <AssociationConnector Association="MarmaraModel.FK_User_Image" />
+        <AssociationConnector Association="MarmaraModel.FK_tblUserExam_User" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

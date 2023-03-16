@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Marmara.Models.tblExam>
+
+@{
+    ViewBag.Title = "Index";
+    int count = 1;
+}
+
+
+<div class="app-title">
+    <div>
+        <h1>Sınavlar</h1>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item active"><a href="#">Sınavlar</a></li>
+    </ul>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="tile-body">
+                <div class="table-responsive">
+                    <a href="~/Admin/exams/create" class="btn btn-primary" style="margin-bottom:15px">Yeni sınav yarat</a>
+                    <table class="table table-hover table-bordered" id="sampleTable">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Durumu </th>
+                                <th>Isim </th>
+                                <th>Ders </th>
+                                <th>Soru sayı </th>
+                                <th>Fiyatı </th>
+                                <th>Toplam puan </th>
+                                <th style="min-width:120px;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+
+                            <tr>
+                                <td>
+                                    @count
+                                </td>
+                                <td>
+                                    @if (item.Status == true)
+                                    {
+                                        <button class="btn btn-primary">Görünür</button>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn btn-danger">Görünmez</button>
+
+                                    }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tblLesson.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tblQuestions.Count)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Price)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Score)
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary" href="/Admin/questions/index/@item.Id">Sorular</a>
+                                    @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
+                                </td>
+                            </tr>
+
+
+                                count++;
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

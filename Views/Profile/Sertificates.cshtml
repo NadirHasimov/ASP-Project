@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Marmara.Models.tblUserExam>
+@{
+    ViewBag.Title = "MyExams";
+    Marmara.Models.User PartialModel = ViewBag.User;
+    int count = 1;
+}
+
+<!-- START SECTION BREADCRUMB -->
+<section class="page-title-light breadcrumb_section parallax_bg overlay_bg_50" data-parallax-bg-image="/Public/site/images/about_bg.jpg">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-sm-6">
+                <div class="page-title">
+                    <h1>Sertifikarlarım</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END SECTION BANNER -->
+<!-- START SECTION TEACHER -->
+<section>
+    <div class="container">
+        <div class="row">
+
+            @Html.Partial("_ProfilePartial", PartialModel)
+
+            <div class="col-lg-9 col-md-6">
+                <table class="table table-hover table-bordered" id="sampleTable">
+                    <thead>
+                        <tr>
+                            <th>№</th>
+                            <th>Adı </th>
+                            <th>Detallar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @if (!Model.Any())
+                        {
+                            <tr>
+                                <td class="empty_row" colspan="5">Boşdur</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @count
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tblExam.Name)
+                                    </td>
+                                    <td>
+                                        <a href="~/certificate/single/@item.Id" class="btn btn-primary">Bax</a>
+                                    </td>
+                                </tr>
+
+                                count++;
+
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END SECTION TEACHER -->

@@ -1,0 +1,56 @@
+﻿@model Marmara.Models.tblQuestion
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<div class="app-title">
+    <div>
+        <h1>Soru Sil</h1>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item">Sorular</li>
+        <li class="breadcrumb-item active"><a href="#">Sil</a></li>
+    </ul>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.tblExam.Name)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.TrueAnswer)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Description)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Row)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Sil" class="btn btn-primary" />
+            <a href="/Admin/questions/index/@Model.ExamId" class="btn btn-primary">Listeye geri dön</a>
+        </div>
+    </div>
+</div>
+}

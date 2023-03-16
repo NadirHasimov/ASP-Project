@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="description" content="">
+    <!-- Open Graph Meta-->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Admin">
+    <title>Admin</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Main CSS-->
+    @Styles.Render("~/imageUpload/css")
+    @Styles.Render("~/admin/css")
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="app sidebar-mini">
+    <!-- Navbar-->
+    <header class="app-header">
+        <a class="app-header__logo" href="~/home" target="_blank">Marmara.edu.az</a>
+        <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+        <!-- Navbar Right Menu-->
+        <ul class="app-nav">
+            <li class="app-search">
+                <input class="app-search__input" type="search" placeholder="Ara">
+                <button class="app-search__button"><i class="fa fa-search"></i></button>
+            </li>
+            <!-- User Menu-->
+            <li class="dropdown">
+                <a class="app-nav__item" href="~/home/logout"><i class="fa fa-sign-out fa-lg"></i></a>
+            </li>
+        </ul>
+    </header>
+    <!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <aside class="app-sidebar">
+        <div class="app-sidebar__user">
+            <img class="app-sidebar__user-avatar" src="~/Public/admin/images/user.jpg" alt="User Image" width="48" height="48">
+            <div>
+                <p class="app-sidebar__user-name">Site Admini</p>
+            </div>
+        </div>
+        <ul class="app-menu">
+            <li><a class="app-menu__item" href="/admin/users"><i class="app-menu__icon fa fa-users"></i><span class="app-menu__label">Kullanıcılar</span></a></li>
+            <li><a class="app-menu__item" href="/admin/lessons"><i class="app-menu__icon fa fa-tag"></i><span class="app-menu__label">Dersler</span></a></li>
+            <li><a class="app-menu__item" href="/admin/userexams"><i class="app-menu__icon fa fa-shopping-cart"></i><span class="app-menu__label">Öğrenci Sınavları</span></a></li>
+            <li><a class="app-menu__item" href="/admin/exams"><i class="app-menu__icon fa fa-file-text-o"></i><span class="app-menu__label">Sınavlar / Sorular</span></a></li>
+            @*<li><a class="app-menu__item" href="/admin/blogs"><i class="app-menu__icon fa fa-rss-square"></i><span class="app-menu__label">Bloglar</span></a></li>*@
+            @*<li><a class="app-menu__item" href="/admin/admissions"><i class="app-menu__icon fa fa-address-card-o"></i><span class="app-menu__label">Başvurular</span></a></li>*@
+          @*  <li><a class="app-menu__item" href="/admin/sertificate"><i class="app-menu__icon fa fa-certificate"></i><span class="app-menu__label">Sertifika</span></a></li>*@
+            <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-video-camera"></i><span class="app-menu__label">Video derslikler</span></a></li>
+            <li><a class="app-menu__item" href="/admin/livestream/index/1"><i class="app-menu__icon fa fa-youtube-play"></i><span class="app-menu__label">Canlı dersler</span></a></li>
+        </ul>
+    </aside>
+    <main class="app-content">
+
+        @RenderBody()
+
+    </main>
+
+    @Scripts.Render("~/imageUpload/js")
+    @Scripts.Render("~/admin/js")
+    @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">$('#sampleTable').DataTable();</script>
+    <script type="text/javascript" src="~/public/admin/js/plugins/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript">
+        $('#demoDate').datepicker({
+            format: "dd/mm/yyyy",
+            autoclose: true,
+            todayHighlight: true
+        });
+
+
+        var date = new Date();
+        date.setDate(date.getDate() - 1);
+
+        $('#lessonDate').datepicker({
+            format: "dd/mm/yyyy",
+            autoclose: true,
+            todayHighlight: true,
+            startDate: date
+        });
+
+    </script>
+</body>
+</html>

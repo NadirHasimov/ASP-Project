@@ -1,0 +1,162 @@
+﻿@model Marmara.Models.User
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="app-title">
+    <div>
+        <h1>Kullanıcı Yarat</h1>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item">Kullanıcı</li>
+        <li class="breadcrumb-item active"><a href="#">Yarat</a></li>
+    </ul>
+</div>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Name">İsim</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Surname">Soyisim</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+            @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Email">Email</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Password">Şifre</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Phone">Telefon</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label class="control-label" for="Address">Ünvan</label>
+        <div>
+            @Html.TextAreaFor(model => model.Address, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="BirthDate">Doğum tarihi</label>
+        <div class="col-md-4">
+            <input class="form-control" id="demoDate" type="text" name="BirthDate" placeholder="Tarih seçin" required>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label class="control-label col-md-4" for="IsMale">Lütfen kullanıcı cinsiyetini seçin:</label>
+        <div class="col-md-10">
+            <div class="checkbox">
+                <input type="radio" id="male" name="IsMale" value="true" checked>
+                <label for="male">Erkek</label><br>
+                <input type="radio" id="female" name="IsMale" value="false">
+                <label for="female">Kadın</label><br>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-4" for="Status">Kullanıcı durumu:</label>
+        <div class="col-md-10">
+            <div class="checkbox">
+                <input type="radio" id="Aktif" name="Status" value="true" checked>
+                <label for="Aktif">Aktif</label><br>
+                <input type="radio" id="Pasif" name="Status" value="false">
+                <label for="Pasif">Pasif</label><br>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-4" for="IsCourseStudent">Kurs öğrencisidir:</label>
+        <div class="col-md-10">
+            <div class="checkbox">
+                <input type="radio" id="true" name="IsCourseStudent" value="true" checked>
+                <label for="true">Evet</label><br>
+                <input type="radio" id="false" name="IsCourseStudent" value="false">
+                <label for="false">Hayır</label><br>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label class="control-label col-md-4" for="Class">Sınıfı</label>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" id="Class" name="Class" type="number" value="" required>
+            @Html.ValidationMessageFor(model => model.Class, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Foto</label>
+        <div class="col-sm-10">
+            <div class="col-md-12">
+                <div class="btn btn-primary browsButton">
+                    <input type="file" id="imageBrowes" />
+                </div>
+                <div id="imgPreview" class="thumbnail-img-upload" style="display:none">
+                    <img class="img-responsive" id="targetImg" />
+                    <div class="caption">
+                        <div onclick="ClearPreview()" style="display:inline-block"><i class="fa fa-trash" aria-hidden="true"></i></div>
+                        <span id="description"></span>
+                    </div>
+                    <div class="resize-slider">
+                        <input id="ex7" type="text" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="50" data-slider-enabled="false" />
+                        <input id="ex7-enabled" type="checkbox" />
+                        <span>Enabled to change %</span>
+                    </div>
+                    <span class="btn btn-primary" onclick="Uploadimage()">Yükle</span>
+                </div>
+            </div>
+            <div class="col-md-8 " id="uploadedImage">
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Yarat" class="btn btn-primary" />
+            <a href="/Admin/users" class="btn btn-primary">Listeye geri dön</a>
+        </div>
+    </div>
+</div>
+}
+

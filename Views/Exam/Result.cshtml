@@ -1,0 +1,144 @@
+﻿@model Marmara.Models.tblUserExam
+@{
+    ViewBag.Title = "Resul";
+}
+
+
+<!-- START SECTION BREADCRUMB -->
+<section class="page-title-light breadcrumb_section parallax_bg overlay_bg_50" data-parallax-bg-image="/Public/site/images/about_bg.jpg">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-sm-6">
+                <div class="page-title">
+                    <h1>Nəticə</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END SECTION BANNER -->
+<!-- START SECTION TEACHER -->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="team_single box_shadow1">
+                    <div class="team_img profile-img">
+                        @if (Model.User.ImageId != null)
+                        {
+                            <img class="rounded-circle user-image" src="~/Uploads/@Model.User.tblImage.Path" alt="team_img_big">
+
+                        }
+                        else
+                        {
+                            <img class="rounded-circle user-image" src="~/Public/site/images/unknown.jpg" alt="profile_img">
+                        }
+                        <h5>@Model.User.Surname @Model.User.Name</h5>
+                    </div>
+                    <div class="profile_links">
+                        <ul>
+                            <li><i class="fa fa-user"></i><a href="~/profile/index/@Model.User.Id">Hesabım</a></li>
+                            <li><i class="fa fa-file"></i><a href="~/profile/myexams/@Model.User.Id">İmtahanlarım</a></li>
+                            <li><i class="fa fa-address-card"></i><a href="~/profile/sertificates/@Model.User.Id">Sertifikarlarım</a></li>
+                            <li><i class="fa fa-shopping-cart"></i><a href="~/profile/myreceipts/@Model.User.Id">Ödənişlərim</a></li>
+                            
+                            <li><i class="fa fa-sign-out" aria-hidden="true"></i><a href="~/home/logout">Çıxış</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-9 col-md-6">
+                <div class="box_shadow1 p-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div>
+                                <strong>Imtahan Adı</strong>
+                                <p>@Model.tblExam.Name</p>
+                            </div>
+                            <div>
+                                <strong>Imtahan Müddəti</strong>
+                                <p>@(Model.tblExam.ExamTimeLimit / 60) dəqiqə</p>
+                            </div>
+                            <div>
+                                <strong>Ümumi bal</strong>
+                                <p>@Model.tblExam.Score</p>
+                            </div>
+                            <div>
+                                <strong>Topladığınız bal</strong>
+                                <p>@Model.EndScore</p>
+                            </div>
+                            <div>
+                                <strong>Doğru cavab sayı</strong>
+                                <p>@Model.TrueAnswerCount</p>
+                            </div>
+                            <div>
+                                <strong>Yanlış cavab sayı</strong>
+                                <p>@Model.FalseAnswerCount</p>
+                            </div>
+                            <div>
+                                <strong>Boş cavab sayı</strong>
+                                <p>@Model.EmptyAnswerCount</p>
+                            </div>
+                            <div>
+                                <strong>Səhv suallar və düzgün cavabları</strong>
+                                <p>@Model.FalseAnswers</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+
+                            <div>
+                                <strong>4 səhv 1 düz cavabı aparırmı ?</strong>
+                                @if (Model.tblExam.FourFalseOneTrue == true)
+                                {
+                                    <p>Bəli</p>
+                                }
+                                else
+                                {
+                                    <p>Xeyr</p>
+                                }
+                            </div>
+                            @if (Model.ProofImageId != null)
+                            {
+                                <div>
+                                    <strong>Qəbz :</strong>
+                                    @Html.ActionLink("Yüklə", "Download", "Exam", new { ImageName = Model.tblImage.Path }, new { @class = "btn btn-secondary btn-sm rounded-0" })
+                                </div>
+                            }
+
+                            <div>
+                                <strong>Ödəmə tarixi</strong>
+                                <p>@Model.PaymentDate</p>
+                            </div>
+                            <div>
+                                <strong>İmtahana giriş tarixi</strong>
+                                <p>@Model.AttemptDate</p>
+                            </div>
+                            <div>
+                                <strong>Sertifikat</strong>
+                                @if (Model.IsSertificateHas == true)
+                                {
+                                    <p>Var</p>
+                                }
+                                else
+                                {
+                                    <p>Yoxdur</p>
+                                }
+                            </div>
+                            <div>
+                                <strong>Qiyməti</strong>
+                                <p>@(Model.tblExam.Price) AZN</p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <object data="~/uploads/@(ViewBag.ExamPdfName)#toolbar=0" type="application/pdf" style="min-height:400px;width:100%">
+                                <param name="title" value="test">
+                            </object>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END SECTION TEACHER -->

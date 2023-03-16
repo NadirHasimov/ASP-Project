@@ -1,0 +1,15 @@
+﻿@model Marmara.Models.tblUserExam
+@{
+    Layout = "~/Views/Shared/_LayoutExam.cshtml";
+    ViewBag.Title = "certificatesingle";
+}
+
+<main class="main">
+    <div class="certificate">
+        <div class="certificate-no">@*№ <strong class="cert-no">OSIM-K000727-00123478</strong>*@</div>
+        <div class="student">@Model.User.Surname @Model.User.Name</div>
+        <div class="exam-text">Marmara Tədris Mərkəzinin online şəkildə keçirdiyi <strong class="exam-name">@Model.tblExam.Name</strong> üzrə yüksək nəticə (@Model.EndScore) göstərdiyi üçün təqdim edilir.</div>
+        <div class="ceo-text">Marmara Tədris Mərkəzinin rəhbəri: Nəbi Hüseyn</div>
+        <div class="date-text">@Model.AttemptDate.Value.ToString("MM/dd/yyyy")</div>
+    </div>
+</main>

@@ -1,0 +1,142 @@
+﻿@model Marmara.Models.User
+@{
+    ViewBag.Title = "Index";
+}
+
+<!-- START SECTION BREADCRUMB -->
+<section class="page-title-light breadcrumb_section parallax_bg overlay_bg_50" data-parallax-bg-image="/Public/site/images/about_bg.jpg">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-sm-6">
+                <div class="page-title">
+                    <h1>Hesabım</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END SECTION BANNER -->
+<!-- START SECTION TEACHER -->
+<section>
+    <div class="container">
+        <div class="row">
+            @Html.Partial("_ProfilePartial", Model)
+          
+            <div class="col-lg-9 col-md-6">
+                <div class="box_shadow1 p-4">
+                    @if (Session["Success"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            @Session["Success"]
+                        </div>
+                        Session["Success"] = null;
+                    }
+
+                    @using (Html.BeginForm("Index", "Profile", FormMethod.Post, new { enctype = "multipart/form-data", @id = "ProfileForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                <div class="row">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
+
+                    <div class="form-group col-md-6">
+                        <label class="control-label" for="Name">Ad</label>
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label class="control-label" for="Surname">Soyad</label>
+                        @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <label class="control-label" for="Email">E-poçt</label>
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <label class="control-label" for="Phone">Telefon</label>
+                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label class="control-label" for="BirthDate">Doğum tarixi</label>
+                        <input class="form-control" id="birhDate" type="text" name="BirthDate" placeholder="Tarih seçin" value="@Model.BirthDate" autocomplete="off">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label class="control-label" for="IsMale">Cinsi</label>
+                        <div class="checkbox">
+                            <input type="radio" id="male" name="IsMale" value="true" @(Model.IsMale == true ? "checked" : "")>
+                            <label for="male">Kişi</label>
+                            <input type="radio" id="female" class="ml-4" name="IsMale" value="false" @(Model.IsMale == false ? "checked" : "")>
+                            <label for="female">Qadın</label><br>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label class="control-label" for="Password">Şifrə</label>
+                        <div>
+                            <input class="form-control text-box single-line mb-1 profilePass" id="Password1" name="Password" type="password">
+                            <h6 class="text_danger profilePassError" style="display:none">Şifrələr eyni deyil!</h6>
+                            <input class="form-control text-box single-line mt-1 profilePass" id="Password2" type="password">
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label class="control-label" for="Address">Ünvan</label>
+                        <div>
+                            @Html.TextAreaFor(model => model.Address, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-md-6">
+                        <label class="control-label" for="ImageId">Şəkil</label>
+                        <div>
+                            <input type="text" name="ImageId" value="@Model.ImageId" style="display:none" />
+                            <input type="file" name="imageFile" id="imageFile" />
+                            <h6 class="text_danger mt-2 imageError" style="display:none"></h6>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label class="control-label" for="Class">Sinif</label>
+                        <div>
+                            <select class="list-box tri-state btn btn-primary" id="Class" name="Class" required>
+                                <option value="1" @(Model.Class == 1 ? "selected='selected'" : "")>1</option>
+                                <option value="2" @(Model.Class == 2 ? "selected='selected'" : "")>2</option>
+                                <option value="3" @(Model.Class == 3 ? "selected='selected'" : "")>3</option>
+                                <option value="4" @(Model.Class == 4 ? "selected='selected'" : "")>4</option>
+                                <option value="5" @(Model.Class == 5 ? "selected='selected'" : "")>5</option>
+                                <option value="6" @(Model.Class == 6 ? "selected='selected'" : "")>6</option>
+                                <option value="7" @(Model.Class == 7 ? "selected='selected'" : "")>7</option>
+                                <option value="8" @(Model.Class == 8 ? "selected='selected'" : "")>8</option>
+                                <option value="9" @(Model.Class == 9 ? "selected='selected'" : "")>9</option>
+                                <option value="10" @(Model.Class == 10 ? "selected='selected'" : "")>10</option>
+                                <option value="11" @(Model.Class == 11 ? "selected='selected'" : "")>11</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-md-12">
+                        <input type="submit" value="Yadda Saxla" class="btn btn-default profileSaveButton" />
+                    </div>
+                </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END SECTION TEACHER -->
+
+

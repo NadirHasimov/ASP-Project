@@ -1,0 +1,96 @@
+﻿@model Marmara.Models.tblLesson
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="app-title">
+    <div>
+        <h1>Canlı Yayım</h1>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item">Canlı</li>
+        <li class="breadcrumb-item active"><a href="#">Yayın</a></li>
+    </ul>
+</div>
+
+
+@if (Model.IsLiveStreamActive == false)
+{
+
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="row">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="col-md-12">
+                <input id="IsLiveStreamActive" name="IsLiveStreamActive" type="text" value="true" style="display:none">
+                <div class="tile">
+                    <h5 style="display:inline-block">Tələbələrin canlı yayımı görməsi üçün zəhmət olmasa "Başlat" butonuna klikləyin.</h5>
+                    <input type="submit" value="Başlat" class="btn btn-primary ml-3" />
+                </div>
+            </div>
+        </div>
+    }
+
+}
+else
+{
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="row">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="col-md-12">
+                <input id="IsLiveStreamActive" name="IsLiveStreamActive" type="text" value="false" style="display:none">
+                <div class="tile">
+                    <h5 style="display:inline-block">Canlı yayım bitdiktən sonra zəhmət olmasa canlı yayımı bağlayın</h5>
+                    <input type="submit" value="Bağla" class="btn btn-primary ml-3" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-12">
+            <h3 style="font-weight: 500;">Tələbələrin sualları anlıq olaraq bura gələcəkdir:</h3>
+        </div>
+
+        <div id="LiveChatBox" style="width:80%">
+            <div class="container">
+                <input type="hidden" id="displayname" value="Admin" />
+                <main>
+                    <ul id="discussion" class="chat">
+                        @foreach (var item in ViewBag.Messages)
+                        {
+                            <li class="you">
+                                <div class="entete">
+                                    <span class="status"></span>
+                                    <h2>@item.NameSurname</h2>
+                                    <h3 id="LiveChatMsgTime">@item.MessageTime</h3>
+                                </div>
+                                <div class="triangle"></div>
+                                <div class="message">@item.Message</div>
+                            </li>
+                        }
+                    </ul>
+                </main>
+            </div>
+        </div>
+
+    </div>
+
+    @section scripts {
+        <script src="~/Public/site/js/SignalR.js"></script>
+        <script src="~/Public/site/js/jquery.signalR-2.2.2.min.js"></script>
+        <script src="~/signalr/hubs"></script>
+    }
+
+}
+
